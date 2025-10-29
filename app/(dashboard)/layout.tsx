@@ -8,4 +8,3 @@ export default function DashboardLayout({
 }>) {
   return <MainLayout>{children}</MainLayout>
 }
-

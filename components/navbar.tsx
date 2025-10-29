@@ -169,4 +169,3 @@ export function Navbar({ sidebarOpen, toggleSidebar }: NavbarProps) {
     </header>
   )
 }
-

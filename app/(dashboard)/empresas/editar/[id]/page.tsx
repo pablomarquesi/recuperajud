@@ -194,4 +194,3 @@ export default function EditarEmpresaPage({ params }: { params: { id: string } }
     </div>
   )
 }
-

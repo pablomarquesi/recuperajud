@@ -3,13 +3,14 @@
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Building, CheckCircle2, Clock, FileText, Download } from "lucide-react"
+import { Building, CheckCircle2, Clock, FileText } from "lucide-react"
 import { DashboardCharts } from "@/components/dashboard-charts"
 import { RecentActivities } from "@/components/recent-activities"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AnalysisCharts } from "@/components/analysis-charts"
 import { ReportList } from "@/components/report-list"
+import Link from "next/link"
 
 export default function DashboardPage() {
   const [reportPeriod, setReportPeriod] = useState("mensal")
@@ -140,7 +141,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle>Relatórios</CardTitle>
-                  <CardDescription>Geração e download de relatórios</CardDescription>
+                  <CardDescription>Geração e visualização de relatórios detalhados</CardDescription>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Select value={reportPeriod} onValueChange={setReportPeriod}>
@@ -153,9 +154,8 @@ export default function DashboardPage() {
                       <SelectItem value="anual">Anual</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button>
-                    <Download className="mr-2 h-4 w-4" />
-                    Gerar Relatório
+                  <Button asChild>
+                    <Link href="/dashboard/relatorios">Ver Todos os Relatórios</Link>
                   </Button>
                 </div>
               </div>
@@ -169,4 +169,3 @@ export default function DashboardPage() {
     </div>
   )
 }
-

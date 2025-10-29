@@ -83,4 +83,3 @@ export function AnalysisCharts({ type }: AnalysisChartsProps) {
       return null
   }
 }
-

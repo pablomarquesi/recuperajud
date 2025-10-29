@@ -4,89 +4,81 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { AlertCircle } from "lucide-react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import Image from "next/image"
 
 export function LoginForm() {
-  const router = useRouter()
+  const [usuario, setUsuario] = useState("")
+  const [senha, setSenha] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    setError("")
 
-    try {
-      // Simulação de autenticação
-      if (formData.username === "admin" && formData.password === "Liods2024") {
-        // Redireciona para o dashboard após login bem-sucedido
-        router.push("/dashboard")
-      } else {
-        setError("Usuário ou senha inválidos")
-      }
-    } catch (err) {
-      setError("Ocorreu um erro ao tentar fazer login. Tente novamente.")
-    } finally {
-      setIsLoading(false)
-    }
+    // Simular um pequeno delay para melhor UX
+    setTimeout(() => {
+      router.push("/dashboard")
+    }, 500)
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {error && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-      <div className="space-y-2">
-        <Label htmlFor="username">Usuário</Label>
-        <Input
-          id="username"
-          name="username"
-          placeholder="Digite seu usuário"
-          required
-          value={formData.username}
-          onChange={handleChange}
-          className="bg-white/50 backdrop-blur-sm dark:bg-gray-800/50"
+    <div className="w-full max-w-md space-y-8">
+      {/* Logo */}
+      <div className="flex justify-center">
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_RecuperaJUD%20%281%29-mE3Flp0pPxhJdhb87rlN1ePHXigfQj.png"
+          alt="RecuperaJUD"
+          width={400}
+          height={100}
+          className="h-auto w-full max-w-sm"
+          priority
         />
       </div>
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <Label htmlFor="password">Senha</Label>
-          <Link href="/recuperar-senha" className="text-sm text-blue-600 hover:underline dark:text-blue-400">
-            Esqueceu a senha?
-          </Link>
+
+      {/* Formulário */}
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="usuario" className="text-sm font-medium text-gray-700">
+              Usuário
+            </Label>
+            <Input
+              id="usuario"
+              type="text"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+              className="h-11"
+              placeholder="Digite seu usuário"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="senha" className="text-sm font-medium text-gray-700">
+              Senha
+            </Label>
+            <Input
+              id="senha"
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              className="h-11"
+              placeholder="Digite sua senha"
+            />
+          </div>
         </div>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Digite sua senha"
-          required
-          value={formData.password}
-          onChange={handleChange}
-          className="bg-white/50 backdrop-blur-sm dark:bg-gray-800/50"
-        />
-      </div>
-      <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ? "Entrando..." : "Entrar"}
-      </Button>
-    </form>
+
+        <Button
+          type="submit"
+          className="w-full h-11 bg-[#1B3B5F] hover:bg-[#152e4a] text-white font-medium"
+          disabled={isLoading}
+        >
+          {isLoading ? "Entrando..." : "Entrar"}
+        </Button>
+      </form>
+    </div>
   )
 }
-

@@ -65,4 +65,3 @@ export function Timeline({ etapas }: TimelineProps) {
     </div>
   )
 }
-

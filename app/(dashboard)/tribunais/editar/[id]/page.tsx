@@ -924,4 +924,3 @@ export default function EditarTribunalPage({ params }: { params: { id: string } 
     </div>
   )
 }
-

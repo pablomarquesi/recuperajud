@@ -551,4 +551,3 @@ export default function EditarUsuarioPage({ params }: { params: { id: string } }
     </div>
   )
 }
-

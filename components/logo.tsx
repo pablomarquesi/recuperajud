@@ -25,4 +25,3 @@ export function Logo(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
-

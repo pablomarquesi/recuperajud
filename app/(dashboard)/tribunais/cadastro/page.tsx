@@ -58,6 +58,8 @@ const formSchema = z.object({
   chaveConsulta: z.string().optional(),
   usuarioConsulta: z.string().optional(),
   senhaConsulta: z.string().optional(),
+  autoSync: z.boolean().default(false),
+  syncInterval: z.number().optional(),
 })
 
 export default function CadastroTribunalPage() {
@@ -100,6 +102,8 @@ export default function CadastroTribunalPage() {
       chaveConsulta: "",
       usuarioConsulta: "",
       senhaConsulta: "",
+      autoSync: false,
+      syncInterval: 6,
     },
   })
 
@@ -679,6 +683,47 @@ export default function CadastroTribunalPage() {
                             )}
                           />
                         </div>
+
+                        <FormField
+                          control={form.control}
+                          name="autoSync"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                              <div className="space-y-0.5">
+                                <FormLabel className="text-base">Sincronização Automática</FormLabel>
+                                <FormDescription>
+                                  Sincronize automaticamente os dados com o {sistemaJudicial} nos intervalos definidos
+                                </FormDescription>
+                              </div>
+                              <FormControl>
+                                <Switch checked={field.value} onCheckedChange={field.onChange} />
+                              </FormControl>
+                            </FormItem>
+                          )}
+                        />
+
+                        {form.watch("autoSync") && (
+                          <FormField
+                            control={form.control}
+                            name="syncInterval"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Intervalo de Sincronização (horas)</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="number"
+                                    {...field}
+                                    onChange={(e) => field.onChange(Number.parseInt(e.target.value))}
+                                  />
+                                </FormControl>
+                                <FormDescription>
+                                  Define o intervalo em horas para sincronização automática com o {sistemaJudicial}
+                                </FormDescription>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        )}
                       </div>
                     )}
                   </CardContent>
@@ -700,4 +745,3 @@ export default function CadastroTribunalPage() {
     </div>
   )
 }
-

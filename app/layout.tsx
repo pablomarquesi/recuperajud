@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "RecuperaJud - Sistema de Gerenciamento de Recuperação Judicial",
   description: "Sistema para gerenciamento e consulta de Empresas em Recuperação Judicial",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -27,7 +27,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'

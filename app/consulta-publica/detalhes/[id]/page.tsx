@@ -434,4 +434,3 @@ export default function DetalhesPublicoPage({ params }: { params: { id: string }
     </div>
   )
 }
-

@@ -444,4 +444,3 @@ export default function DetalhesEmpresaPage({ params }: { params: { id: string }
     </div>
   )
 }
-

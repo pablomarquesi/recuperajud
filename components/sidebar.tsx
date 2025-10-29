@@ -4,7 +4,7 @@ import type React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Building, Home, Settings, Users, X, Scale } from "lucide-react"
+import { Building, Home, Settings, Users, X, Scale, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface SidebarProps {
@@ -44,6 +44,7 @@ export function Sidebar({ open, setOpen, isCollapsed }: SidebarProps) {
             <NavItem href="/empresas" icon={Building} label="Empresas em RJ" isCollapsed={isCollapsed} />
             <NavItem href="/tribunais" icon={Scale} label="Tribunais" isCollapsed={isCollapsed} />
             <NavItem href="/usuarios" icon={Users} label="Usuários" isCollapsed={isCollapsed} />
+            <NavItem href="/relatorios" icon={FileText} label="Relatórios" isCollapsed={isCollapsed} />
             <NavItem href="/configuracoes" icon={Settings} label="Configurações" isCollapsed={isCollapsed} />
           </ul>
         </nav>
@@ -90,4 +91,3 @@ function NavItem({ href, icon: Icon, label, isCollapsed }: NavItemProps) {
     </li>
   )
 }
-
